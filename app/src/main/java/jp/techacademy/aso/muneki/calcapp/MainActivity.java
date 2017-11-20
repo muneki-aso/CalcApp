@@ -39,40 +39,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String str;
         double value1 = 0;
         double value2 = 0;
+        try {
         str = mEditText1.getText().toString();
-        value1 = Double.parseDouble(str);
-        try{
-            value1 = "" || value1 = "." || value2 = "" || value2 = ".";
-        }
-        catch (Exception e){
-            Toast toast = Toast.makeText(this, "数値を入れてください。", Toast.LENGTH_LONG);
-            toast.show();
-        }
-
         str = mEditText2.getText().toString();
-        value2 = Double.parseDouble(str);
-        try{
-            value2 = 0;
+            value1 = Double.parseDouble(str);
+            value2 = Double.parseDouble(str);
+        } catch (Exception e) {
         }
-        catch (Exception e){
+        if (value2 == 0.0) {
             Toast toast = Toast.makeText(this, "0で割ると余りは0です。", Toast.LENGTH_LONG);
             toast.show();
+            return;
         }
-
+        
         double result = 0;
 
-        if (v.getId() == R.id.button1) {
-            result = (value1 + value2);
-        } else if (v.getId() == R.id.button2) {
-            result = (value1 - value2);
-        } else if (v.getId() == R.id.button3) {
-            result = (value1 * value2);
-        } else {
-            result = (value1 / value2);
-        }
+                if (v.getId() == R.id.button1) {
+                    result = (value1 + value2);
+                } else if (v.getId() == R.id.button2) {
+                    result = (value1 - value2);
+                } else if (v.getId() == R.id.button3) {
+                    result = (value1 * value2);
+                } else {
+                    result = (value1 / value2);
+                }
 
-        Intent intent = new Intent(this, SecondActivity.class);
-        intent.putExtra("VALUE1", result);
-        startActivity(intent);
+                Intent intent = new Intent(this, SecondActivity.class);
+                intent.putExtra("VALUE1", result);
+                startActivity(intent);
     }
 }
+
