@@ -39,19 +39,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String str;
         double value1 = 0;
         double value2 = 0;
+
         try {
         str = mEditText1.getText().toString();
-        str = mEditText2.getText().toString();
             value1 = Double.parseDouble(str);
+        str = mEditText2.getText().toString();
             value2 = Double.parseDouble(str);
         } catch (Exception e) {
-        }
-        if (value2 == 0.0) {
-            Toast toast = Toast.makeText(this, "0で割ると余りは0です。", Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(this, "数値を入力してください。", Toast.LENGTH_LONG);
             toast.show();
             return;
         }
-        
+
         double result = 0;
 
                 if (v.getId() == R.id.button1) {
@@ -60,6 +59,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     result = (value1 - value2);
                 } else if (v.getId() == R.id.button3) {
                     result = (value1 * value2);
+                } else if (value2 == 0.0) {
+                    Toast toast = Toast.makeText(this, "0で割ると余りは0です。", Toast.LENGTH_LONG);
+                    toast.show();
+                    return;
                 } else {
                     result = (value1 / value2);
                 }
